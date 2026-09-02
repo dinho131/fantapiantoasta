@@ -1,0 +1,93 @@
+{
+  "appTitle": "Fanta Asta Manager - Gestione Asta Fantacalcio",
+  "topNav": {
+    "title": "FANTA ASTA",
+    "loadConfig": "Carica Config (YAML)",
+    "loadPlayers": "Carica Calciatori (CSV)",
+    "loadSave": "Ripristina Salvataggio",
+    "exportCsv": "Esporta Riepilogo CSV",
+    "language": "Lingua",
+    "sound": "Audio"
+  },
+  "auctionHeader": {
+    "currentTurn": "TURNO DI CHIAMATA",
+    "caller": "Chiama:",
+    "timerTitle": "TEMPO RIMASTO",
+    "statusIdle": "In attesa di chiamata calciatore",
+    "statusBidding": "Asta in corso...",
+    "statusPaused": "Asta in pausa",
+    "statusAssigned": "Calciatore Assegnato!",
+    "statusComplete": "Asta Conclusa per tutte le rose!",
+    "currentPlayer": "CALCIATORE SUL PIATTO",
+    "selectPlayerPrompt": "Digita per cercare un calciatore...",
+    "basePrice": "Prezzo Base: 1",
+    "currentBid": "OFFERTA ATTUALE",
+    "leadingBidder": "Miglior Offerente:",
+    "activeBidder": "TOCCA A:",
+    "none": "Nessuno",
+    "credits": "crediti"
+  },
+  "controls": {
+    "startRound": "Avvia Asta (Spazio)",
+    "pauseRound": "Pausa",
+    "resumeRound": "Riprendi",
+    "resetTimer": "Reset Timer",
+    "bid": "Rilancia",
+    "pass": "Passa / Salta (S)",
+    "assign": "Assegna (A)",
+    "customBidPlaceholder": "Offerta...",
+    "undo": "Annulla Ultimo Acquisto (Ctrl+Z)",
+    "confirmAssign": "Conferma Assegnazione"
+  },
+  "stats": {
+    "auctioners": "Partecipanti & Rose",
+    "remainingCredits": "Crediti Rimasti",
+    "spentCredits": "Spesi",
+    "boughtPlayers": "Calciatori",
+    "remainingSlots": "Slot Liberi",
+    "maxExpendable": "Max Spendibile",
+    "maxExpendableTooltip": "Formula: Crediti Rimasti - (Calciatori Rimasti - 1)",
+    "squadRoster": "Rosa Acquistata",
+    "role": "Ruolo",
+    "team": "Squadra",
+    "cost": "Costo",
+    "noPlayersYet": "Nessun calciatore acquistato finora."
+  },
+  "roles": {
+    "P": "Portiere",
+    "D": "Difensore",
+    "C": "Centrocampista",
+    "A": "Attaccante",
+    "all": "Tutti i Ruoli"
+  },
+  "playerSearch": {
+    "title": "Lista Calciatori",
+    "searchPlaceholder": "Cerca calciatore per nome o squadra...",
+    "filterRole": "Ruolo:",
+    "filterStatus": "Stato:",
+    "allStatus": "Tutti",
+    "available": "Disponibili",
+    "assigned": "Venduti",
+    "callBtn": "Metti all'Asta",
+    "noResults": "Nessun calciatore trovato"
+  },
+  "history": {
+    "title": "Storico Assegnazioni Recenti",
+    "empty": "Nessuna assegnazione recente.",
+    "assignedTo": "acquistato da",
+    "forPrice": "a"
+  },
+  "dialogs": {
+    "savedSuccess": "Stato salvato con successo nella cartella 'save'!",
+    "saveError": "Errore durante il salvataggio:",
+    "loadSuccess": "File caricato correttamente!",
+    "loadError": "Errore nel caricamento del file:",
+    "exportSuccess": "Riepilogo asta esportato con successo in:",
+    "undoConfirm": "Sei sicuro di voler annullare l'acquisto di {player} da parte di {auctioner} per {cost} crediti?",
+    "maxExpendableExceeded": "Offerta non valida: supera il Max Spendibile ({max} crediti)!",
+    "bidTooLow": "L'offerta deve essere maggiore dell'offerta corrente ({current} crediti)!",
+    "noPlayerSelected": "Seleziona prima un calciatore da mettere all'asta.",
+    "squadFull": "{auctioner} ha già completato la sua rosa ({total} giocatori)!",
+    "allCompleted": "Tutti i partecipanti hanno completato le loro rose!"
+  }
+}

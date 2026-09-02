@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fanta Asta Manager</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Navigation & File Controls -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <span class="brand-icon">⚽</span>
+        <span class="brand-title" data-i18n="topNav.title">FANTA ASTA</span>
+      </div>
+
+      <div class="nav-actions">
+        <button id="btnLoadConfig" class="btn-nav" title="Carica file YAML di configurazione">
+          <span class="icon">⚙️</span>
+          <span data-i18n="topNav.loadConfig">Carica Config (YAML)</span>
+        </button>
+
+        <button id="btnLoadPlayers" class="btn-nav" title="Carica file CSV dei calciatori">
+          <span class="icon">📋</span>
+          <span data-i18n="topNav.loadPlayers">Carica Calciatori (CSV)</span>
+        </button>
+
+        <button id="btnLoadSave" class="btn-nav" title="Ripristina sessione salvata">
+          <span class="icon">💾</span>
+          <span data-i18n="topNav.loadSave">Ripristina Salvataggio</span>
+        </button>
+
+        <button id="btnExportCsv" class="btn-nav btn-export" title="Esporta riepilogo asta in CSV">
+          <span class="icon">📊</span>
+          <span data-i18n="topNav.exportCsv">Esporta Riepilogo</span>
+        </button>
+
+        <div class="nav-divider"></div>
+
+        <div class="nav-control-group">
+          <label for="langSelect" class="nav-label" data-i18n="topNav.language">Lingua</label>
+          <select id="langSelect" class="nav-select">
+            <option value="it">🇮🇹 IT</option>
+            <option value="en">🇬🇧 EN</option>
+          </select>
+        </div>
+
+        <button id="btnToggleSound" class="btn-icon" title="Attiva/Disattiva Audio">
+          <span id="soundIcon">🔊</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Fixed Upper Auction Header -->
+    <section class="fixed-auction-header">
+      <div class="header-grid">
+        
+        <!-- Left: Turn & Call State -->
+        <div class="header-card turn-card">
+          <div class="card-tag" data-i18n="auctionHeader.currentTurn">TURNO DI CHIAMATA</div>
+          <div class="caller-row">
+            <span class="caller-prefix" data-i18n="auctionHeader.caller">Chiama:</span>
+            <span id="currentCallerName" class="caller-name">-</span>
+          </div>
+          <div id="auctionStatusBadge" class="status-badge idle" data-i18n="auctionHeader.statusIdle">
+            In attesa di chiamata calciatore
+          </div>
+        </div>
+
+        <!-- Center: Current Player Info & Autocomplete / Price -->
+        <div class="header-card player-hero-card">
+          <div class="card-tag" data-i18n="auctionHeader.currentPlayer">CALCIATORE SUL PIATTO</div>
+          
+          <!-- When player is selected -->
+          <div id="activePlayerDisplay" class="active-player-info hidden">
+            <div class="player-main-line">
+              <span id="playerRoleBadge" class="role-badge role-A">A</span>
+              <span id="playerNameDisplay" class="player-title">Lautaro Martinez</span>
+              <span id="playerTeamBadge" class="team-badge">Inter</span>
+            </div>
+            <div class="bidding-stats-row">
+              <div class="stat-pill">
+                <span class="stat-label" data-i18n="auctionHeader.currentBid">OFFERTA ATTUALE:</span>
+                <span id="currentBidAmount" class="stat-val bid-amount">1</span>
+                <span class="credits-symbol" data-i18n="auctionHeader.credits">crediti</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-label" data-i18n="auctionHeader.leadingBidder">Miglior Offerente:</span>
+                <span id="leadingBidderName" class="stat-val bidder-lead">-</span>
+              </div>
+              <div class="stat-pill turn-indicator-pill">
+                <span class="stat-label" data-i18n="auctionHeader.activeBidder">TOCCA A:</span>
+                <span id="activeBidderName" class="stat-val bidder-active pulsing-text">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- When choosing player (Search Autocomplete Input) -->
+          <div id="playerSelectBox" class="player-select-container">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="playerCallInput" class="player-call-input" placeholder="Digita per cercare un calciatore da chiamare..." autocomplete="off">
+              <button id="btnClearSearch" class="btn-clear-input hidden">&times;</button>
+            </div>
+            <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
+          </div>
+        </div>
+
+        <!-- Right: Countdown Timer -->
+        <div class="header-card timer-card">
+          <div class="card-tag" data-i18n="auctionHeader.timerTitle">TEMPO RIMASTO</div>
+          <div class="timer-display-container">
+            <div id="timerCircle" class="timer-circle">
+              <span id="timerValue" class="timer-digits">60</span>
+            </div>
+          </div>
+          <div class="timer-actions">
+            <button id="btnPauseResume" class="btn-timer-sub" title="Pausa / Riprendi (P)">⏸</button>
+            <button id="btnResetTimer" class="btn-timer-sub" title="Reset Timer">🔄</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Control Bar -->
+      <div class="action-control-bar">
+        <div class="control-left">
+          <button id="btnStartRound" class="btn-action btn-start" disabled>
+            <span class="icon">▶</span>
+            <span data-i18n="controls.startRound">Avvia Asta (Spazio)</span>
+          </button>
+          
+          <button id="btnPass" class="btn-action btn-pass" disabled>
+            <span class="icon">⏭</span>
+            <span data-i18n="controls.pass">Passa / Salta (S)</span>
+          </button>
+
+          <div class="bid-input-group">
+            <input type="number" id="customBidInput" class="bid-number-input" placeholder="Offerta..." min="1" disabled>
+            <button id="btnBid" class="btn-action btn-bid" disabled>
+              <span class="icon">💰</span>
+              <span data-i18n="controls.bid">Rilancia</span>
+            </button>
+          </div>
+
+          <!-- Quick Increment Buttons -->
+          <div class="quick-bid-group">
+            <button class="btn-quick-bid" data-inc="1" disabled>+1</button>
+            <button class="btn-quick-bid" data-inc="5" disabled>+5</button>
+            <button class="btn-quick-bid" data-inc="10" disabled>+10</button>
+            <button class="btn-quick-bid" data-inc="20" disabled>+20</button>
+          </div>
+        </div>
+
+        <div class="control-right">
+          <button id="btnAssign" class="btn-action btn-assign" disabled>
+            <span class="icon">🏆</span>
+            <span data-i18n="controls.assign">Assegna (A)</span>
+          </button>
+          
+          <button id="btnUndo" class="btn-action btn-undo" title="Annulla ultimo acquisto" disabled>
+            <span class="icon">↩</span>
+            <span data-i18n="controls.undo">Annulla</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content: Auctioners Dashboard & Players Database -->
+    <main class="main-layout">
+      
+      <!-- Left / Center: Auctioners Roster & Max-Expendable Cards -->
+      <section class="auctioners-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="icon">👥</span>
+            <span data-i18n="stats.auctioners">Partecipanti & Rose</span>
+          </h2>
+          <div class="squad-size-info">
+            <span>Roster Max: <strong id="totalSquadSizeDisplay">25</strong></span>
+          </div>
+        </div>
+
+        <div id="auctionersGrid" class="auctioners-grid">
+          <!-- Populated dynamically by renderer.js -->
+        </div>
+      </section>
+
+      <!-- Right: Players Database / Search Drawer & Assignment History -->
+      <aside class="sidebar-section">
+        
+        <!-- Tab Navigation -->
+        <div class="sidebar-tabs">
+          <button id="tabPlayers" class="sidebar-tab active">
+            <span class="icon">📋</span>
+            <span data-i18n="playerSearch.title">Calciatori</span>
+          </button>
+          <button id="tabHistory" class="sidebar-tab">
+            <span class="icon">📜</span>
+            <span data-i18n="history.title">Storico</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Players Database -->
+        <div id="playersTabContent" class="tab-content active">
+          <div class="filter-controls">
+            <input type="text" id="sidebarSearchInput" class="sidebar-search" placeholder="Cerca calciatore o squadra...">
+            <div class="filter-row">
+              <select id="filterRoleSelect" class="filter-select">
+                <option value="all" data-i18n="roles.all">Tutti i Ruoli</option>
+                <option value="P" data-i18n="roles.P">Portieri (P)</option>
+                <option value="D" data-i18n="roles.D">Difensori (D)</option>
+                <option value="C" data-i18n="roles.C">Centrocampisti (C)</option>
+                <option value="A" data-i18n="roles.A">Attaccanti (A)</option>
+              </select>
+              <select id="filterStatusSelect" class="filter-select">
+                <option value="available" data-i18n="playerSearch.available">Disponibili</option>
+                <option value="assigned" data-i18n="playerSearch.assigned">Venduti</option>
+                <option value="all" data-i18n="playerSearch.allStatus">Tutti</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="sidebarPlayerList" class="sidebar-player-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Assignment History -->
+        <div id="historyTabContent" class="tab-content">
+          <div id="historyList" class="history-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <!-- Modal for Resuming Session or File Dialogs -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modalTitle" class="modal-title">Ripristina Salvataggio</h3>
+          <button id="btnCloseModal" class="btn-close-modal">&times;</button>
+        </div>
+        <div id="modalBody" class="modal-body">
+          <!-- Dynamic modal contents -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toastNotification" class="toast hidden"></div>
+
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

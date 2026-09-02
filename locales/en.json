@@ -1,0 +1,93 @@
+{
+  "appTitle": "Fanta Auction Manager - Fantasy Soccer Auction GUI",
+  "topNav": {
+    "title": "FANTA AUCTION",
+    "loadConfig": "Load Config (YAML)",
+    "loadPlayers": "Load Players (CSV)",
+    "loadSave": "Resume Saved Session",
+    "exportCsv": "Export Summary CSV",
+    "language": "Language",
+    "sound": "Sound"
+  },
+  "auctionHeader": {
+    "currentTurn": "CALL TURN",
+    "caller": "Calling:",
+    "timerTitle": "REMAINING TIME",
+    "statusIdle": "Waiting for player call",
+    "statusBidding": "Bidding in progress...",
+    "statusPaused": "Auction paused",
+    "statusAssigned": "Player Assigned!",
+    "statusComplete": "All squads completed!",
+    "currentPlayer": "CURRENT PLAYER ON AUCTION",
+    "selectPlayerPrompt": "Type to search player...",
+    "basePrice": "Base Price: 1",
+    "currentBid": "CURRENT BID",
+    "leadingBidder": "Highest Bidder:",
+    "activeBidder": "TURN TO BID:",
+    "none": "None",
+    "credits": "credits"
+  },
+  "controls": {
+    "startRound": "Start Auction (Space)",
+    "pauseRound": "Pause",
+    "resumeRound": "Resume",
+    "resetTimer": "Reset Timer",
+    "bid": "Raise",
+    "pass": "Skip / Pass (S)",
+    "assign": "Assign (A)",
+    "customBidPlaceholder": "Bid amount...",
+    "undo": "Undo Last Purchase (Ctrl+Z)",
+    "confirmAssign": "Confirm Assignment"
+  },
+  "stats": {
+    "auctioners": "Auctioners & Rosters",
+    "remainingCredits": "Remaining Credits",
+    "spentCredits": "Spent",
+    "boughtPlayers": "Players",
+    "remainingSlots": "Free Slots",
+    "maxExpendable": "Max Expendable",
+    "maxExpendableTooltip": "Formula: Remaining Credits - (Remaining Players - 1)",
+    "squadRoster": "Bought Roster",
+    "role": "Role",
+    "team": "Team",
+    "cost": "Cost",
+    "noPlayersYet": "No players bought yet."
+  },
+  "roles": {
+    "P": "Goalkeeper",
+    "D": "Defender",
+    "C": "Midfielder",
+    "A": "Forward",
+    "all": "All Roles"
+  },
+  "playerSearch": {
+    "title": "Players Database",
+    "searchPlaceholder": "Search player by name or team...",
+    "filterRole": "Role:",
+    "filterStatus": "Status:",
+    "allStatus": "All",
+    "available": "Available",
+    "assigned": "Sold",
+    "callBtn": "Put on Auction",
+    "noResults": "No players found"
+  },
+  "history": {
+    "title": "Recent Assignments Log",
+    "empty": "No recent assignments.",
+    "assignedTo": "bought by",
+    "forPrice": "for"
+  },
+  "dialogs": {
+    "savedSuccess": "Session saved successfully in 'save' folder!",
+    "saveError": "Error while saving:",
+    "loadSuccess": "File loaded successfully!",
+    "loadError": "Error loading file:",
+    "exportSuccess": "Auction summary exported successfully to:",
+    "undoConfirm": "Are you sure you want to undo the purchase of {player} by {auctioner} for {cost} credits?",
+    "maxExpendableExceeded": "Invalid bid: exceeds Max-Expendable ({max} credits)!",
+    "bidTooLow": "Bid must be higher than current bid ({current} credits)!",
+    "noPlayerSelected": "Please select a player to auction first.",
+    "squadFull": "{auctioner} already has a full squad ({total} players)!",
+    "allCompleted": "All auctioners have completed their squads!"
+  }
+}

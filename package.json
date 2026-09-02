@@ -1,0 +1,25 @@
+{
+  "name": "fanta-asta-manager",
+  "version": "1.0.0",
+  "description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "keywords": [
+    "fantacalcio",
+    "auction",
+    "electron",
+    "soccer",
+    "asta"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "electron": "^28.2.0"
+  }
+}
