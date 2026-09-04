@@ -55,5 +55,11 @@ Lautaro,A,Inter
 Svilar,A,Roma
 ```
 
+# fixtimer branch:
+We must implement a small fix: now when timer runs out player is assigned to auctioner who made higest offer. Correct behaviour is that when timer runs out
+  current auctioner must pass and excluded from current bid, then is turn of next auctioner
+
+bug perststs: when timer runs out current auctioner MUST PASS and auction MUST CONTINUE with next auctioner. Is the same behaviour of PASS button
+
 ** TESTED WITH node -> stable (-> v24.20.0) **
 

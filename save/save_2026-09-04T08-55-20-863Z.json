@@ -1,0 +1,348 @@
+{
+  "timestamp": "2026-09-04T08:55:20.860Z",
+  "config": {
+    "auctioners": [
+      {
+        "num": 1,
+        "name": "Mario"
+      },
+      {
+        "num": 2,
+        "name": "Luigi"
+      },
+      {
+        "num": 3,
+        "name": "Bowser"
+      },
+      {
+        "num": 4,
+        "name": "Peach"
+      }
+    ],
+    "countdown": 10,
+    "credits": 330,
+    "total_players": 25,
+    "language": "it"
+  },
+  "callOrderIndex": 1,
+  "auctionersState": {
+    "1": {
+      "num": 1,
+      "name": "Mario",
+      "initialCredits": 330,
+      "remainingCredits": 330,
+      "boughtPlayers": []
+    },
+    "2": {
+      "num": 2,
+      "name": "Luigi",
+      "initialCredits": 330,
+      "remainingCredits": 310,
+      "boughtPlayers": [
+        {
+          "id": "p_1_lautaro_martinez",
+          "name": "Lautaro Martinez",
+          "role": "A",
+          "team": "Inter",
+          "cost": 20,
+          "time": "10:55:20 AM"
+        }
+      ]
+    },
+    "3": {
+      "num": 3,
+      "name": "Bowser",
+      "initialCredits": 330,
+      "remainingCredits": 330,
+      "boughtPlayers": []
+    },
+    "4": {
+      "num": 4,
+      "name": "Peach",
+      "initialCredits": 330,
+      "remainingCredits": 330,
+      "boughtPlayers": []
+    }
+  },
+  "players": [
+    {
+      "id": "p_1_lautaro_martinez",
+      "name": "Lautaro Martinez",
+      "role": "A",
+      "team": "Inter",
+      "status": "assigned",
+      "cost": 20,
+      "assignedTo": "Luigi"
+    },
+    {
+      "id": "p_2_svilar",
+      "name": "Svilar",
+      "role": "P",
+      "team": "Roma",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_3_maignan",
+      "name": "Maignan",
+      "role": "P",
+      "team": "Milan",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_4_sommer",
+      "name": "Sommer",
+      "role": "P",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_5_di_gregorio",
+      "name": "Di Gregorio",
+      "role": "P",
+      "team": "Juventus",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_6_theo_hernandez",
+      "name": "Theo Hernandez",
+      "role": "D",
+      "team": "Milan",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_7_dimarco",
+      "name": "Dimarco",
+      "role": "D",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_8_bremer",
+      "name": "Bremer",
+      "role": "D",
+      "team": "Juventus",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_9_buongiorno",
+      "name": "Buongiorno",
+      "role": "D",
+      "team": "Napoli",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_10_bastoni",
+      "name": "Bastoni",
+      "role": "D",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_11_pavard",
+      "name": "Pavard",
+      "role": "D",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_12_bellanova",
+      "name": "Bellanova",
+      "role": "D",
+      "team": "Atalanta",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_13_posch",
+      "name": "Posch",
+      "role": "D",
+      "team": "Bologna",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_14_barella",
+      "name": "Barella",
+      "role": "C",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_15_calhanoglu",
+      "name": "Calhanoglu",
+      "role": "C",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_16_koopmeiners",
+      "name": "Koopmeiners",
+      "role": "C",
+      "team": "Juventus",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_17_pulisic",
+      "name": "Pulisic",
+      "role": "C",
+      "team": "Milan",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_18_zaccagni",
+      "name": "Zaccagni",
+      "role": "C",
+      "team": "Lazio",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_19_de_ketelaere",
+      "name": "De Ketelaere",
+      "role": "C",
+      "team": "Atalanta",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_20_pellegrini",
+      "name": "Pellegrini",
+      "role": "C",
+      "team": "Roma",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_21_mctominay",
+      "name": "McTominay",
+      "role": "C",
+      "team": "Napoli",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_22_vlahovic",
+      "name": "Vlahovic",
+      "role": "A",
+      "team": "Juventus",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_23_osimhen",
+      "name": "Osimhen",
+      "role": "A",
+      "team": "Napoli",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_24_thuram",
+      "name": "Thuram",
+      "role": "A",
+      "team": "Inter",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_25_lookman",
+      "name": "Lookman",
+      "role": "A",
+      "team": "Atalanta",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_26_retegui",
+      "name": "Retegui",
+      "role": "A",
+      "team": "Atalanta",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_27_dybala",
+      "name": "Dybala",
+      "role": "A",
+      "team": "Roma",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_28_kvaratskhelia",
+      "name": "Kvaratskhelia",
+      "role": "A",
+      "team": "Napoli",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    },
+    {
+      "id": "p_29_gudmundsson",
+      "name": "Gudmundsson",
+      "role": "A",
+      "team": "Fiorentina",
+      "status": "available",
+      "cost": 0,
+      "assignedTo": null
+    }
+  ],
+  "history": [
+    {
+      "action": "assign",
+      "player": {
+        "id": "p_1_lautaro_martinez",
+        "name": "Lautaro Martinez",
+        "role": "A",
+        "team": "Inter",
+        "status": "assigned",
+        "cost": 20,
+        "assignedTo": "Luigi"
+      },
+      "auctionerNum": 2,
+      "cost": 20,
+      "time": "10:55:20 AM"
+    }
+  ],
+  "lang": "it"
+}

@@ -87,9 +87,9 @@ $$\text{Max-Expendable} = \text{Remaining Credits} - (\text{Remaining Players Ne
 4. **Start Auction**: Click **"Start Auction (Space)"**; focus moves to the next auctioner in round-robin order and countdown begins.
 5. **Turn Options**:
    - **Raise / Bid**: Enter an amount or click `+1`, `+5`, `+10`, `+20`. Software records the new high bid, plays sound, resets the timer, and focuses the next active auctioner.
-   - **Pass / Skip**: Click **"Pass / Skip (S)"**. The auctioner is excluded for the remainder of this player's auction. Focus advances to the next non-skipped auctioner.
+   - **Pass / Skip**: Click **"Pass / Skip (S)"** or let the countdown timer run out. The current auctioner is marked as passed (excluded from the current player's auction) and the turn advances to the next auctioner.
 6. **Player Assignment**:
-   - When only 1 active auctioner remains (or admin clicks **"Assign (A)"** or the timer expires with a high bidder), the player is assigned to the winner.
+   - When only 1 active auctioner remains (or admin clicks **"Assign (A)"**), the player is assigned to the winner at the current price.
    - Roster, remaining credits, and Max-Expendable are instantly updated.
    - State is **automatically saved to disk** in the `save/` directory.
    - Turn automatically advances to the next caller with open slots.

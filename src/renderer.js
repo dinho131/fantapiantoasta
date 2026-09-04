@@ -469,10 +469,9 @@ function startTimer() {
     }
 
     if (appState.currentAuction.timerSeconds <= 0) {
-      stopTimer();
       elements.timerCircle.classList.remove('warning');
-      // Timer expired: assign player to current high bidder
-      assignCurrentPlayer();
+      // Timer expired: current auctioner passes and turn advances to next
+      handlePass();
     }
   }, 1000);
 }

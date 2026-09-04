@@ -1,6 +1,6 @@
 {
   "name": "fanta-asta-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
   "main": "main.js",
   "scripts": {
