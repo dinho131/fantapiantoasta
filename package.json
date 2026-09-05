@@ -1,25 +1,47 @@
 {
-  "name": "fanta-asta-manager",
-  "version": "0.1.0",
-  "author": "dinho131",
-  "license": "GPL-3.0-or-later",
-  "description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "dev": "electron ."
-  },
-  "keywords": [
-    "fantacalcio",
-    "auction",
-    "electron",
-    "soccer",
-    "asta"
-  ],
-  "dependencies": {
-    "js-yaml": "^4.1.0"
-  },
-  "devDependencies": {
-    "electron": "^28.2.0"
-  }
+	"name": "fanta-asta-manager",
+	"version": "0.2.0",
+	"author": "dinho131",
+	"license": "GPL-3.0-or-later",
+	"description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"dev": "electron .",
+		"dist:win": "electron-builder --win",
+		"dist:linux": "electron-builder --linux"
+	},
+	"build": {
+		"appId": "it.dinho131.fantapiantoasta",
+		"productName": "Asta Fantapianto",
+		"linux": {
+			"target": [ "tar.gz" ],
+			"icon": "build/icon.png",
+			"category": "Utility"
+		},
+		"win": {
+			"target": [ "zip" ],
+			"icon": "imgs/icon.png"
+		},
+		"extraFiles": [
+			{
+				"from": "LICENSE",
+				"to": "LICENSE.txt"
+			}
+		]
+	},
+	"keywords": [
+		"fantacalcio",
+		"auction",
+		"electron",
+		"soccer",
+		"asta"
+	],
+	"dependencies": {
+		"js-yaml": "^4.1.0"
+	},
+	"devDependencies": {
+		"electron": "^28.2.0",
+		"electron-builder": "^26.15.3"
+	}
 }

@@ -28,6 +28,15 @@ To run the Electron application in desktop mode:
 npm start
 ```
 
+### 4. Build Dist
+
+To run the Electron application in desktop mode:
+
+```bash
+npm install electron-builder
+npm run dist:<win|linux>
+```
+
 ---
 
 ## 📁 File Formats & Configuration
