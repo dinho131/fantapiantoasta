@@ -83,6 +83,7 @@ function parseCsv(text) {
       else if (['D', 'DEF'].includes(role)) role = 'D';
       else if (['C', 'M', 'CEN', 'MID'].includes(role)) role = 'C';
       else if (['A', 'F', 'ATT', 'FWD'].includes(role)) role = 'A';
+      else if (['T', 'T', 'TRQ', 'ATM'].includes(role)) role = 'T';
       else role = 'A';
 
       const team = cols[teamIdx >= 0 ? teamIdx : 2] || 'Serie A';

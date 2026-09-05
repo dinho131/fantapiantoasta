@@ -38,6 +38,7 @@
   --role-d: #10b981; /* Difensore - Green */
   --role-c: #06b6d4; /* Centrocampista - Cyan */
   --role-a: #ef4444; /* Attaccante - Red */
+  --role-t: #636363; /* Trequartista - Grey */
 
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -295,6 +296,7 @@ body {
 .role-D { background-color: var(--role-d); }
 .role-C { background-color: var(--role-c); }
 .role-A { background-color: var(--role-a); }
+.role-T { background-color: var(--role-t); }
 
 .player-title {
   font-size: 1.5rem;

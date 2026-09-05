@@ -1,4 +1,4 @@
-# ⚽ Fanta Asta Manager (Fantasy Soccer Auction Software) [![License: GPL v3 or later](https://img.shields.io/badge/License-GPLv3%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# ⚽ Fanta Asta Manager (Fantasy Soccer Auction Software)
 
 Desktop GUI software built with **Electron & Node.js** to manage fantasy soccer auctions (Aste Fantacalcio).
 
@@ -7,10 +7,13 @@ Desktop GUI software built with **Electron & Node.js** to manage fantasy soccer 
 ## 🚀 How to Launch the Software
 
 ### 1. Prerequisites
+
 Ensure you have **Node.js** (v16 or higher) and **npm** installed on your machine.
+
 - Download from [https://nodejs.org/](https://nodejs.org/)
 
 ### 2. Install Dependencies
+
 Open a terminal / command prompt in this project folder (`/mnt/d/test123/fantaasta` or `D:\test123\fantaasta`) and run:
 
 ```bash
@@ -18,6 +21,7 @@ npm install
 ```
 
 ### 3. Launch the Application
+
 To run the Electron application in desktop mode:
 
 ```bash
@@ -31,6 +35,7 @@ npm start
 The application reads two main files (either loaded at startup or via the top navigation buttons):
 
 ### 1. YAML Configuration File (`config.example.yaml`)
+
 Defines the auction participants (auctioners), initial credits budget, countdown timer duration, total squad size, and default language.
 
 ```yaml
@@ -51,6 +56,7 @@ language: "it"            # Default interface language: 'it' or 'en'
 ```
 
 ### 2. CSV Players File (`players.example.csv`)
+
 Contains the list of soccer players to buy (supports `;` or `,` delimiters):
 
 ```csv
@@ -58,12 +64,13 @@ NAME;ROLE;TEAM
 Lautaro Martinez;A;Inter
 Svilar;P;Roma
 Maignan;P;Milan
-Theo Hernandez;D;Milan
+Gabbia;D;Milan
 Barella;C;Inter
 Vlahovic;A;Juventus
+Dybala;T;Roma
 ```
 
-* **Roles supported:** `P` (Portiere/GK), `D` (Difensore/DEF), `C` (Centrocampista/MID), `A` (Attaccante/FWD).
+- **Roles supported:** `P` (Portiere/GK), `D` (Difensore/DEF), `C` (Centrocampista/MID), `T` (Trequartista/ATM).`A` (Attaccante/FWD).
 
 ---
 
@@ -73,9 +80,9 @@ To prevent an auctioner from overspending and being unable to complete their ful
 
 $$\text{Max-Expendable} = \text{Remaining Credits} - (\text{Remaining Players Needed} - 1)$$
 
-* Example: If an auctioner has 100 credits and needs 5 more players, they can spend at most:
+- Example: If an auctioner has 100 credits and needs 5 more players, they can spend at most:
   $$100 - (5 - 1) = 100 - 4 = 96 \text{ credits}$$
-* The system automatically blocks any bid higher than the active auctioner's Max-Expendable.
+- The system automatically blocks any bid higher than the active auctioner's Max-Expendable.
 
 ---
 
@@ -99,7 +106,7 @@ $$\text{Max-Expendable} = \text{Remaining Credits} - (\text{Remaining Players Ne
 ## ⌨️ Keyboard Shortcuts
 
 | Shortcut | Action |
-|---|---|
+| --- | --- |
 | **Space** | Start Round / Pause / Resume |
 | **S** / **s** | Pass / Skip current auctioner |
 | **A** / **a** | Assign player to leading bidder |
