@@ -80,7 +80,12 @@
         
         <!-- Left: Turn & Call State -->
         <div class="header-card turn-card">
-          <div class="card-tag" data-i18n="auctionHeader.currentTurn">TURNO DI CHIAMATA</div>
+          <div class="card-header-flex">
+            <span class="card-tag" data-i18n="auctionHeader.currentTurn">TURNO DI CHIAMATA</span>
+            <div id="playerProgressCounter" class="player-progress-badge" title="Calciatori assegnati / Totale calciatori">
+              <span id="assignedPlayersCount">0</span> / <span id="totalPlayersCount">0</span>
+            </div>
+          </div>
           <div class="caller-row">
             <span class="caller-prefix" data-i18n="auctionHeader.caller">Chiama:</span>
             <span id="currentCallerName" class="caller-name">-</span>

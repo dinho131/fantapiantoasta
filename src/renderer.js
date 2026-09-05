@@ -53,6 +53,8 @@ const elements = {
 
   // Header
   currentCallerName: document.getElementById('currentCallerName'),
+  assignedPlayersCount: document.getElementById('assignedPlayersCount'),
+  totalPlayersCount: document.getElementById('totalPlayersCount'),
   auctionStatusBadge: document.getElementById('auctionStatusBadge'),
   activePlayerDisplay: document.getElementById('activePlayerDisplay'),
   playerRoleBadge: document.getElementById('playerRoleBadge'),
@@ -558,9 +560,21 @@ async function exportSummaryCsv() {
 
 // ==================== UI Rendering ====================
 function updateUI() {
-  // 1. Caller display
+  // 1. Caller display & Player Progress Counter
   const caller = getCallerAuctioner();
   elements.currentCallerName.textContent = caller ? `${caller.num}. ${caller.name}` : '-';
+
+  const assignedCount = Object.values(appState.auctionersState).reduce((sum, auc) => sum + (auc.boughtPlayers ? auc.boughtPlayers.length : 0), 0);
+  const totalPlayersCount = (appState.players && appState.players.length > 0)
+    ? appState.players.length
+    : (appState.config.auctioners.length * (appState.config.total_players || 25));
+
+  if (elements.assignedPlayersCount) {
+    elements.assignedPlayersCount.textContent = assignedCount;
+  }
+  if (elements.totalPlayersCount) {
+    elements.totalPlayersCount.textContent = totalPlayersCount;
+  }
 
   // 2. Active Auction & Header state
   if (appState.currentAuction && appState.currentAuction.player) {

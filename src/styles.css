@@ -210,6 +210,36 @@ body {
   margin-bottom: 6px;
 }
 
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card-header-flex .card-tag {
+  margin-bottom: 0;
+}
+
+.player-progress-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.player-progress-badge span {
+  font-weight: 800;
+}
+
 /* Turn Card */
 .caller-row {
   display: flex;
