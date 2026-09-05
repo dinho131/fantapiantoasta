@@ -1,4 +1,4 @@
-# ⚽ Fanta Asta Manager (Fantasy Soccer Auction Software)
+# ⚽ Fanta Asta Manager (Fantasy Soccer Auction Software) [![License: GPL v3 or later](https://img.shields.io/badge/License-GPLv3%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Desktop GUI software built with **Electron & Node.js** to manage fantasy soccer auctions (Aste Fantacalcio).
 

@@ -1,6 +1,8 @@
 {
   "name": "fanta-asta-manager",
-  "version": "1.0.1",
+  "version": "0.0.1",
+  "author": "dinho131",
+  "license": "GPL-3.0-or-later",
   "description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
   "main": "main.js",
   "scripts": {
@@ -14,8 +16,6 @@
     "soccer",
     "asta"
   ],
-  "author": "Antigravity",
-  "license": "MIT",
   "dependencies": {
     "js-yaml": "^4.1.0"
   },
