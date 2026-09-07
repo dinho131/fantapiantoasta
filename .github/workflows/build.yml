@@ -11,6 +11,10 @@ jobs:
     name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
+    # PERMESSO RICHIESTO:
+    permissions:
+      contents: write # Consente la creazione di Release e il caricamento di file/tag
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -30,7 +34,7 @@ jobs:
 
       - name: Build Electron App
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: npm run release
 
       - name: Upload artifacts
