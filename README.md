@@ -62,6 +62,7 @@ countdown: "60 seconds"   # Duration of countdown timer per turn
 credits: 330              # Initial budget per auctioner
 total_players: 25         # Target squad size (used for Max-Expendable formula)
 language: "it"            # Default interface language: 'it' or 'en'
+# save_dir: "/path/to/saves" # Optional absolute path to save directory (if omitted, defaults to "save" folder)
 ```
 
 ### 2. CSV Players File (`players.example.csv`)
@@ -126,7 +127,8 @@ $$\text{Max-Expendable} = \text{Remaining Credits} - (\text{Remaining Players Ne
 
 ## 💾 Saving, Resuming & Exporting
 
-- **Auto-Save**: Saved automatically after every player purchase to the `save/` folder (with timestamps and `latest_save.json`).
-- **Resume Session**: Click **"Resume Saved Session"** in the top navigation to view and reload any past state.
-- **Export Summary**: Click **"Export Summary CSV"** to export an Excel-ready CSV file of all squads, purchases, costs, and timestamps.
+- **Configurable Save Directory**: By default, saves are stored in a `"save"` folder within the application folder. When packaged with `electron-builder`, it is automatically placed in the executable directory (`path.dirname(process.execPath)`). You can specify an absolute path using `save_dir: "/path/to/saves"` in the YAML config file to store saves in any custom directory.
+- **Auto-Save**: Saved automatically after every player purchase to the configured save folder (with timestamped backups and `latest_save.json`).
+- **Resume Session**: Click **"Resume Saved Session"** in the top navigation to view and reload any past state from the configured save directory.
+- **Export Summary**: Click **"Export Summary CSV"** to export an Excel-ready CSV file of all squads, purchases, costs, and timestamps (defaults to the configured save directory).
 - **Multilingual Support**: Supports Italian (`it`) and English (`en`) via external JSON files in `locales/`.

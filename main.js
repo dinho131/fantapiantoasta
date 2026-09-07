@@ -20,6 +20,39 @@ const path = require('path');
 const fs = require('fs');
 
 let mainWindow;
+let currentSaveDir = null;
+
+function resolveDefaultSaveDir() {
+  const baseDir = app.isPackaged ? path.dirname(process.execPath) : __dirname;
+  return path.join(baseDir, 'save');
+}
+
+function setSaveDir(configuredDir) {
+  if (configuredDir && typeof configuredDir === 'string' && configuredDir.trim()) {
+    currentSaveDir = path.resolve(configuredDir.trim());
+  } else {
+    currentSaveDir = resolveDefaultSaveDir();
+  }
+  try {
+    if (!fs.existsSync(currentSaveDir)) {
+      fs.mkdirSync(currentSaveDir, { recursive: true });
+    }
+  } catch (err) {
+    console.error(`Failed to create save directory at ${currentSaveDir}:`, err);
+    currentSaveDir = resolveDefaultSaveDir();
+    if (!fs.existsSync(currentSaveDir)) {
+      fs.mkdirSync(currentSaveDir, { recursive: true });
+    }
+  }
+  return currentSaveDir;
+}
+
+function getSaveDir() {
+  if (!currentSaveDir) {
+    setSaveDir(null);
+  }
+  return currentSaveDir;
+}
 
 // Lightweight robust YAML parser fallback if js-yaml is not installed
 function parseYaml(text) {
@@ -44,6 +77,12 @@ function parseYaml(text) {
         result.total_players = parseInt(line.replace('total_players:', '').trim(), 10) || 25;
       } else if (line.startsWith('language:')) {
         result.language = line.replace('language:', '').trim().replace(/['"]/g, '');
+      } else if (line.startsWith('save_dir:')) {
+        result.save_dir = line.replace('save_dir:', '').trim().replace(/['"]/g, '');
+      } else if (line.startsWith('save_directory:')) {
+        result.save_dir = line.replace('save_directory:', '').trim().replace(/['"]/g, '');
+      } else if (line.startsWith('savedir:')) {
+        result.save_dir = line.replace('savedir:', '').trim().replace(/['"]/g, '');
       } else if (line.startsWith('- num:')) {
         const parts = line.replace('-', '').split(',');
         const numPart = parts[0].replace('num:', '').trim();
@@ -118,11 +157,8 @@ function createWindow() {
 
   mainWindow.loadFile(path.join(__dirname, 'src', 'index.html'));
   
-  // Create 'save' folder if not exists
-  const saveDir = path.join(__dirname, 'save');
-  if (!fs.existsSync(saveDir)) {
-    fs.mkdirSync(saveDir, { recursive: true });
-  }
+  // Ensure save directory is initialized
+  getSaveDir();
 }
 
 app.whenReady().then(() => {
@@ -153,7 +189,13 @@ ipcMain.handle('read-config-file', async (event, filePath) => {
   const targetPath = filePath || path.join(__dirname, 'config.example.yaml');
   if (!fs.existsSync(targetPath)) return null;
   const content = fs.readFileSync(targetPath, 'utf-8');
-  return parseYaml(content);
+  const parsed = parseYaml(content);
+  if (parsed && parsed.save_dir) {
+    setSaveDir(parsed.save_dir);
+  } else {
+    setSaveDir(null);
+  }
+  return parsed;
 });
 
 ipcMain.handle('read-players-file', async (event, filePath) => {
@@ -174,10 +216,10 @@ ipcMain.handle('load-locale', async (event, lang) => {
 
 ipcMain.handle('save-auction-state', async (event, stateData) => {
   try {
-    const saveDir = path.join(__dirname, 'save');
-    if (!fs.existsSync(saveDir)) {
-      fs.mkdirSync(saveDir, { recursive: true });
+    if (stateData && stateData.config && stateData.config.save_dir) {
+      setSaveDir(stateData.config.save_dir);
     }
+    const saveDir = getSaveDir();
     
     // Save timestamped backup and latest session
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -197,7 +239,7 @@ ipcMain.handle('save-auction-state', async (event, stateData) => {
 });
 
 ipcMain.handle('get-saved-sessions', async () => {
-  const saveDir = path.join(__dirname, 'save');
+  const saveDir = getSaveDir();
   if (!fs.existsSync(saveDir)) return [];
   const files = fs.readdirSync(saveDir).filter(f => f.endsWith('.json'));
   return files.map(f => {
@@ -212,7 +254,8 @@ ipcMain.handle('get-saved-sessions', async () => {
 
 ipcMain.handle('load-saved-state', async (event, filePath) => {
   try {
-    const targetPath = filePath || path.join(__dirname, 'save', 'latest_save.json');
+    const saveDir = getSaveDir();
+    const targetPath = filePath || path.join(saveDir, 'latest_save.json');
     if (!fs.existsSync(targetPath)) return null;
     const content = fs.readFileSync(targetPath, 'utf-8');
     return JSON.parse(content);
@@ -224,9 +267,10 @@ ipcMain.handle('load-saved-state', async (event, filePath) => {
 
 ipcMain.handle('export-csv', async (event, data) => {
   try {
+    const saveDir = getSaveDir();
     const result = await dialog.showSaveDialog(mainWindow, {
       title: 'Export Auction Summary CSV',
-      defaultPath: path.join(__dirname, 'save', `auction_summary_${new Date().toISOString().slice(0,10)}.csv`),
+      defaultPath: path.join(saveDir, `auction_summary_${new Date().toISOString().slice(0,10)}.csv`),
       filters: [{ name: 'CSV Files', extensions: ['csv'] }]
     });
 
@@ -244,4 +288,8 @@ ipcMain.handle('export-csv', async (event, data) => {
   } catch (error) {
     return { success: false, error: error.message };
   }
+});
+
+ipcMain.handle('get-save-dir', () => {
+  return getSaveDir();
 });

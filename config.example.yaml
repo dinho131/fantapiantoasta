@@ -13,3 +13,4 @@ countdown: "60 seconds"   # Or number of seconds, e.g. 60
 credits: 330              # Initial budget per auctioner
 total_players: 25         # Total squad size (for Max-Expendable formula)
 language: "it"            # Default UI language: 'it' or 'en'
+# save_dir: "/path/to/saves" # Optional absolute path to save directory. If omitted, a "save" folder within the app directory is used.
