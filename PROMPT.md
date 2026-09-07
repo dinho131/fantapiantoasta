@@ -70,4 +70,9 @@ bug perststs: when timer runs out current auctioner MUST PASS and auction MUST C
 
 In the small frame "Call turn" we must add a counter with called players and total players (EG: "62 / 512" means that 62 players over 512 are already assigned)
 
+### bettersave branch
+
+Repository is already on correct branch. No need to execute any "git" command. Save dir must be configured in config file (use absolute path), last directory is where saves are. If not present create a "save" folder within current folder. Consider that software will be compiled using "electron builder".
+Ask if unsure of something.
+
 #### TESTED WITH node -> stable (-> v24.20.0)

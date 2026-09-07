@@ -169,6 +169,11 @@ function applyConfig(cfg) {
     elements.langSelect.value = cfg.language;
     loadLanguage(cfg.language);
   }
+  if (cfg.save_dir) {
+    appState.config.save_dir = cfg.save_dir;
+  } else {
+    delete appState.config.save_dir;
+  }
 
   initAuctionersState();
   elements.totalSquadSizeDisplay.textContent = appState.config.total_players;

@@ -25,5 +25,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   saveAuctionState: (stateData) => ipcRenderer.invoke('save-auction-state', stateData),
   getSavedSessions: () => ipcRenderer.invoke('get-saved-sessions'),
   loadSavedState: (filePath) => ipcRenderer.invoke('load-saved-state', filePath),
-  exportCsv: (data) => ipcRenderer.invoke('export-csv', data)
+  exportCsv: (data) => ipcRenderer.invoke('export-csv', data),
+  getSaveDir: () => ipcRenderer.invoke('get-save-dir')
 });
