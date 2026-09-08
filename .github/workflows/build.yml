@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Electron App
         env:
-          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run release
 
       - name: Upload artifacts
