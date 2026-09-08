@@ -58,6 +58,7 @@
     "D": "Difensore",
     "C": "Centrocampista",
     "A": "Attaccante",
+    "T": "Trequartista",
     "all": "Tutti i Ruoli"
   },
   "playerSearch": {

@@ -1,6 +1,6 @@
 {
 	"name": "fanta-asta-manager",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"author": "dinho131",
 	"license": "GPL-3.0-or-later",
 	"description": "Fantasy Soccer Auction Manager (Asta Fantacalcio) Electron GUI",
@@ -21,7 +21,7 @@
 			"category": "Utility"
 		},
 		"win": {
-			"target": [ "zip" ],
+			"target": [ "zip", "nsis" ],
 			"icon": "imgs/icon.png"
 		},
 		"extraFiles": [

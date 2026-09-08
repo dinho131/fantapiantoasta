@@ -58,6 +58,7 @@
     "D": "Defender",
     "C": "Midfielder",
     "A": "Forward",
+    "T": "Att. Midfielder",
     "all": "All Roles"
   },
   "playerSearch": {
