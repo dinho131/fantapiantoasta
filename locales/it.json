@@ -51,6 +51,7 @@
     "role": "Ruolo",
     "team": "Squadra",
     "cost": "Costo",
+    "reorder": "Riordina",
     "noPlayersYet": "Nessun calciatore acquistato finora."
   },
   "roles": {

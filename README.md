@@ -48,6 +48,7 @@ The application reads two main files (either loaded at startup or via the top na
 Defines the auction participants (auctioners), initial credits budget, countdown timer duration, total squad size, and default language.
 
 ```yaml
+reorder: "PDCTA"            # Order of roles for squad rosters (e.g. PDCTA)
 auctioners:
   - num: 1
     name: "Mario"

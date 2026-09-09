@@ -51,6 +51,7 @@
     "role": "Role",
     "team": "Team",
     "cost": "Cost",
+    "reorder": "Reorder",
     "noPlayersYet": "No players bought yet."
   },
   "roles": {

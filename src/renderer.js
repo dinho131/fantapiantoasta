@@ -19,6 +19,7 @@
 
 let appState = {
   config: {
+    reorder: "PDCTA",
     auctioners: [
       { num: 1, name: "Mario" },
       { num: 2, name: "Luigi" },
@@ -84,6 +85,7 @@ const elements = {
   btnUndo: document.getElementById('btnUndo'),
 
   // Main
+  btnReorder: document.getElementById('btnReorder'),
   totalSquadSizeDisplay: document.getElementById('totalSquadSizeDisplay'),
   auctionersGrid: document.getElementById('auctionersGrid'),
 
@@ -149,6 +151,9 @@ function initAuctionersState() {
 }
 
 function applyConfig(cfg) {
+  if (cfg.reorder && typeof cfg.reorder === 'string') {
+    appState.config.reorder = cfg.reorder.trim().toUpperCase();
+  }
   if (cfg.auctioners && Array.isArray(cfg.auctioners)) {
     appState.config.auctioners = cfg.auctioners;
   }
@@ -475,6 +480,40 @@ async function handleUndo() {
   }
 }
 
+// ==================== Reorder by Role ====================
+async function handleReorder() {
+  const reorderPattern = (appState.config && appState.config.reorder) ? appState.config.reorder.toUpperCase() : 'PDCTA';
+
+  // Role priority mapping
+  const rolePriority = {};
+  for (let i = 0; i < reorderPattern.length; i++) {
+    rolePriority[reorderPattern[i]] = i;
+  }
+
+  // Sort bought players of all auctioners
+  Object.values(appState.auctionersState).forEach(auc => {
+    if (auc.boughtPlayers && auc.boughtPlayers.length > 1) {
+      auc.boughtPlayers.sort((a, b) => {
+        const roleA = (a.role || '').toUpperCase();
+        const roleB = (b.role || '').toUpperCase();
+
+        const priorityA = rolePriority[roleA] !== undefined ? rolePriority[roleA] : 999;
+        const priorityB = rolePriority[roleB] !== undefined ? rolePriority[roleB] : 999;
+
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+        }
+        return 0; // Preserve existing relative order for same role
+      });
+    }
+  });
+
+  // Create a new save file
+  await autoSaveState();
+  updateUI();
+  showToast(t('stats.reorder') + ' OK', 'success');
+}
+
 // ==================== Timer Engine ====================
 function startTimer() {
   stopTimer();
@@ -526,9 +565,14 @@ function resetCurrentTimer() {
 // ==================== Auto-Save & Export ====================
 async function autoSaveState() {
   if (!window.electronAPI) return;
+  const reorderVal = appState.config.reorder || 'PDCTA';
   const stateData = {
+    reorder: reorderVal,
     timestamp: new Date().toISOString(),
-    config: appState.config,
+    config: {
+      reorder: reorderVal,
+      ...appState.config
+    },
     callOrderIndex: appState.callOrderIndex,
     auctionersState: appState.auctionersState,
     players: appState.players,
@@ -902,6 +946,9 @@ function bindEvents() {
 
   elements.btnAssign.addEventListener('click', assignCurrentPlayer);
   elements.btnUndo.addEventListener('click', handleUndo);
+  if (elements.btnReorder) {
+    elements.btnReorder.addEventListener('click', handleReorder);
+  }
 
   elements.btnPauseResume.addEventListener('click', togglePauseResume);
   elements.btnResetTimer.addEventListener('click', resetCurrentTimer);
@@ -1011,6 +1058,9 @@ async function showSavedSessionsModal() {
         const savedState = await window.electronAPI.loadSavedState(sess.filePath);
         if (savedState) {
           appState.config = savedState.config || appState.config;
+          if (savedState.reorder && !appState.config.reorder) {
+            appState.config.reorder = savedState.reorder;
+          }
           appState.callOrderIndex = savedState.callOrderIndex || 0;
           appState.auctionersState = savedState.auctionersState || appState.auctionersState;
           appState.players = savedState.players || appState.players;

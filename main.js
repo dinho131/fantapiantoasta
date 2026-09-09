@@ -69,7 +69,9 @@ function parseYaml(text) {
       const line = rawLine.trim();
       if (!line || line.startsWith('#')) continue;
 
-      if (line.startsWith('countdown:')) {
+      if (line.startsWith('reorder:')) {
+        result.reorder = line.replace('reorder:', '').trim().replace(/['"]/g, '');
+      } else if (line.startsWith('countdown:')) {
         result.countdown = line.replace('countdown:', '').trim().replace(/['"]/g, '');
       } else if (line.startsWith('credits:')) {
         result.credits = parseInt(line.replace('credits:', '').trim(), 10) || 300;
@@ -225,9 +227,21 @@ ipcMain.handle('save-auction-state', async (event, stateData) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const filename = `save_${timestamp}.json`;
     const fullPath = path.join(saveDir, filename);
-    const latestPath = path.join(saveDir, 'latest_save.json');
+    // Ensure 'reorder' is placed on top of the saved JSON object
+    const reorderVal = (stateData && stateData.reorder) || (stateData && stateData.config && stateData.config.reorder) || 'PDCTA';
+    const orderedData = {
+      reorder: reorderVal,
+      ...stateData
+    };
+    // Ensure config also has reorder on top
+    if (orderedData.config) {
+      orderedData.config = {
+        reorder: reorderVal,
+        ...orderedData.config
+      };
+    }
 
-    const jsonStr = JSON.stringify(stateData, null, 2);
+    const jsonStr = JSON.stringify(orderedData, null, 2);
     fs.writeFileSync(fullPath, jsonStr, 'utf-8');
     fs.writeFileSync(latestPath, jsonStr, 'utf-8');
 
